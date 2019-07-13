@@ -21,9 +21,23 @@ const createFPMLink = (perf: () => (firebase.performance.Performance | undefined
 
     let trace: firebase.performance.Trace;
     if (perfObj !== undefined && operationType !== 'subscription') {
-      let traceName = `${operationType}-${operation.operationName}`;
+      let traceName = `${operation.operationName}`.trim();
       if (traceName.length > 32) {
         traceName = traceName.substr(0, 32);
+      } else if (traceName.length === 0) {
+        traceName = 'unknown';
+      }
+      if (traceName.charAt(0) === '_') {
+        traceName = traceName.substr(1, traceName.length - 1).trim();
+        if (traceName.length === 0) {
+          traceName = 'unknown';
+        }
+      }
+      if (traceName.charAt(traceName.length - 1) === '_') {
+        traceName = traceName.substr(0, traceName.length - 1).trim();
+        if (traceName.length === 0 || traceName === '_') {
+          traceName = 'unknown';
+        }
       }
       trace = perfObj.trace(traceName);
       trace.start();
