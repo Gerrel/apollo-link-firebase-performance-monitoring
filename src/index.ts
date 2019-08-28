@@ -19,7 +19,7 @@ const createFPMLink = (perf: () => (firebase.performance.Performance | undefined
     const perfObj = perf();
     const startTime = new Date().getTime();
 
-    let trace: firebase.performance.Trace;
+    let trace: firebase.performance.Trace | undefined;
     if (perfObj !== undefined && operationType !== 'subscription') {
       let traceName = `${operation.operationName}`.trim();
       if (traceName.length > 32) {
@@ -46,6 +46,7 @@ const createFPMLink = (perf: () => (firebase.performance.Performance | undefined
     return forward(operation).map(result => {
       if (trace !== undefined) {
         trace.stop();
+        trace = undefined;
       }
       if (debug) {
         const ellapsed = new Date().getTime() - startTime;

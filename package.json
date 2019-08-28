@@ -1,6 +1,6 @@
 {
   "name": "apollo-link-firebase-performance-monitoring",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Firebase Performance Monitoring for Apollo GraphQL Client using Apollo Link",
   "main": "lib/index.js",
   "scripts": {
@@ -37,16 +37,15 @@
   "homepage": "https://github.com/Gerrel/apollo-link-firebase-performance-monitoring#readme",
   "devDependencies": {
     "typescript": "^3.5.3",
-    "rimraf": "^2.6.3",
+    "rimraf": "^3.0.0",
     "prettier": "^1.18.2",
-    "tslint": "^5.18.0",
+    "tslint": "^5.19.0",
     "apollo-link": "^1.2.12",
-    "graphql": "^14.4.2",
-    "firebase": "^6.3.0",
-    "@types/graphql": "^14.2.2"
+    "graphql": "^14.5.3",
+    "firebase": "^6.4.2"
   },
   "peerDependencies": {
     "apollo-link": "^1.2.12",
-    "firebase": "^6.3.0"
+    "firebase": "^6.4.2"
   }
 }
