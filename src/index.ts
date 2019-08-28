@@ -39,14 +39,28 @@ const createFPMLink = (perf: () => (firebase.performance.Performance | undefined
           traceName = 'unknown';
         }
       }
-      trace = perfObj.trace(traceName);
-      trace.start();
+      try {
+        trace = perfObj.trace(traceName);
+        trace.start();
+      } catch (e) {
+        if (debug) {
+          // tslint:disable-next-line: no-console
+          console.error('Unable to start FPM trace', e);
+        }
+      }
     }
 
     return forward(operation).map(result => {
       if (trace !== undefined) {
-        trace.stop();
-        trace = undefined;
+        try {
+          trace.stop();
+          trace = undefined;
+        } catch (e) {
+          if (debug) {
+            // tslint:disable-next-line: no-console
+            console.error('Unable to stop FPM trace', e);
+          }
+        }
       }
       if (debug) {
         const ellapsed = new Date().getTime() - startTime;
