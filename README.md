@@ -16,8 +16,8 @@ npm install apollo-link-firebase-performance-monitoring
 
 ### Prerequisites
 
-* Apollo Link: ^1.2.13
-* Firebase: ^6.6.1 || ^7.2.1
+* Apollo Link: ^1.2.14
+* Firebase: ^6.6.1 || ^7.2.1 || ^7.15.5
 
 ```ts
 // Firebase App (the core Firebase SDK) is always required and must be listed first
